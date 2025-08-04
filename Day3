@@ -1,0 +1,66 @@
+1}Valid Anagaram
+
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        dici1 = {}
+        dici2 = {}
+        if len(s)!=len(t):
+            return False
+        else:
+            for i in range(len(s)):
+                val1 = s[i]
+                val2 = t[i]
+                if val1 in dici1:
+                    dici1[val1] += 1
+                else:
+                    dici1[val1] = 1
+                if val2 in dici2:
+                    dici2[val2] += 1
+                else:
+                    dici2[val2] = 1
+        if (dici1==dici2):
+            return True
+        else:
+            return False
+
+
+
+2}find-the-index-of-the-first-occurrence-in-a-string
+
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        dici1 = {}
+        dici2 = {}
+        if len(s)!=len(t):
+            return False
+        else:
+            for i in range(len(s)):
+                val1 = s[i]
+                val2 = t[i]
+                if val1 in dici1:
+                    dici1[val1] += 1
+                else:
+                    dici1[val1] = 1
+                if val2 in dici2:
+                    dici2[val2] += 1
+                else:
+                    dici2[val2] = 1
+        if (dici1==dici2):
+            return True
+        else:
+            return False
+
+
+3)group-anagrams
+
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        dici={}
+        for nums in strs:
+            sorted_word=''.join(sorted(nums))
+            if sorted_word not in dici:
+                dici[sorted_word]=[]
+            dici[sorted_word].append(nums)
+        val=list(dici.values())
+        return(val)
+                
