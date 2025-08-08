@@ -1,0 +1,60 @@
+1)Palindrome-partioning-ii
+
+class Solution:
+    def minCut(self, s: str) -> int:
+        n = len(s)
+        cuts = [i for i in range(n)] 
+
+        for center in range(n):
+            left, right = center, center
+            while left >= 0 and right < n and s[left] == s[right]:
+                cuts[right] = 0 if left == 0 else min(cuts[right], cuts[left - 1] + 1)
+                left -= 1
+                right += 1
+
+            left, right = center, center + 1
+            while left >= 0 and right < n and s[left] == s[right]:
+                cuts[right] = 0 if left == 0 else min(cuts[right], cuts[left - 1] + 1)
+                left -= 1
+                right += 1
+
+        return cuts[-1]
+
+2)Reverse-linked-list-ii
+
+
+class Solution:
+    def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
+        if not head or left == right:
+            return head
+        dummy = ListNode(0)
+        dummy.next = head
+        pre = dummy
+        for _ in range(left - 1):
+            pre = pre.next
+        start = pre.next
+        for _ in range(right - left):
+            then = start.next
+            start.next = then.next
+            then.next = pre.next
+            pre.next = then
+        return dummy.next
+
+3)sliding window max
+
+class Solution:
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        n = len(nums)
+        dq = deque()  
+        ans = []
+    
+        for i in range(n):
+            if dq and dq[0] < i - k + 1:
+                dq.popleft()
+            while dq and nums[dq[-1]] < nums[i]:
+                dq.pop()
+            dq.append(i)
+            if i >= k - 1:
+                ans.append(nums[dq[0]])
+    
+        return ans
